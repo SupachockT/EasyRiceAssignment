@@ -6,7 +6,7 @@ import useUpdateHistory from "../hooks/useUpdateHistory";
 import Input from "../sub-components/Input";
 import OptionInput from "../sub-components/OptionsInput";
 import DateTimeInput from "../sub-components/DateTimeInput";
-import Textarea from "../sub-components/TextArea";
+import TextArea from "../sub-components/TextArea";
 
 export default function Edit() {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function Edit() {
     const { data, isLoading: isHistoryLoading, error: historyError } = useHistory(id);
     const { history } = data || {};
 
-    const { updateHistory, isLoading: isUpdating, error: updateError, isSuccess } = useUpdateHistory();
+    const { updateHistory, isLoading: isUpdating, error: updateError } = useUpdateHistory();
 
     const mapArrayToObject = (array) => ({
         frontEnd: array[0] || false,
@@ -59,6 +59,15 @@ export default function Edit() {
         }
     };
 
+    const handlePriceChange = (e) => {
+        const value = e.target.value;
+        const regex = /^\d*\.?\d{0,2}$/;
+
+        if (regex.test(value) && (value === '' || (parseFloat(value) >= 0 && parseFloat(value) <= 100000))) {
+            setFormData((prev) => ({ ...prev, price: value }));
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const submissionData = {
@@ -71,8 +80,14 @@ export default function Edit() {
             samplingDate: formData.samplingDate ? formData.samplingDate.toISOString() : null,
         };
 
-        updateHistory({ id, data: submissionData });
+        await updateHistory({ id, data: submissionData });
+        if (!updateError) {
+            navigate('/result');
+        }
     };
+
+    if (isHistoryLoading) return <p>Loading...</p>;
+    if (historyError) return <p>Error loading history: {historyError.message}</p>;
 
     return (
         <div className="mt-12 flex justify-center">
@@ -83,7 +98,7 @@ export default function Edit() {
                     Placeholder="0.00"
                     Value={formData.price}
                     isRequired={true}
-                    OnChange={(e) => setFormData({ ...formData, price: e.target.value.replace(/[^0-9.]/g, "") })}
+                    OnChange={handlePriceChange}
                     name="price"
                 />
                 <OptionInput
@@ -101,7 +116,7 @@ export default function Edit() {
                     Selected={formData.samplingDate}
                     OnChange={(samplingDate) => setFormData({ ...formData, samplingDate })}
                 />
-                <Textarea
+                <TextArea
                     Id={"note"}
                     value={formData.note}
                     onChange={(e) => setFormData({ ...formData, note: e.target.value })}

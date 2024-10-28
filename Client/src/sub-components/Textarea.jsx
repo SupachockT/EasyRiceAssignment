@@ -1,4 +1,4 @@
-const Textarea = ({ Id, value, onChange, name }) => (
+const TextArea = ({ Id, value, onChange, name }) => (
     <>
         <label className="font-bold" htmlFor={Id}>Note</label>
         <textarea
@@ -12,4 +12,4 @@ const Textarea = ({ Id, value, onChange, name }) => (
     </>
 );
 
-export default Textarea;
+export default TextArea;
