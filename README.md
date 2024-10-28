@@ -1,11 +1,7 @@
 # Setup
 ## Open Terminal
 - git clone [this.repository]
-- cd ./Client and npm install
-- cd ./Server and npm install
+- cd to root directory where you see both Client and Server folder
 
-- cd .. (where you see Client and Server folder)
-- docker-compose up
-
-1. let it build docker image and run container
-2. view websites at http://localhost:5173
+- docker-compose up --build
+then wait for it to build docker image and run container, after finished you can visit website at http://localhost:5173.
