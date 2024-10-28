@@ -5,10 +5,10 @@ import useSubmitData from "../hooks/useSubmitData";
 
 import Input from "../sub-components/Input";
 import Select from "../sub-components/Select";
-import Textarea from "../sub-components/TextArea";
 import FileInput from "../sub-components/FileInput";
 import OptionInput from "../sub-components/OptionsInput";
 import DateTimeInput from "../sub-components/DateTimeInput";
+import TextArea from "../sub-components/TextArea";
 
 export default function Form() {
     const { standards } = useApi();
@@ -141,7 +141,7 @@ export default function Form() {
                 Selected={formData.samplingDate}
                 OnChange={(samplingDate) => setFormData({ ...formData, samplingDate })}
             />
-            <Textarea
+            <TextArea
                 Id={"note"}
                 value={formData.note}
                 onChange={handleChange}
