@@ -8,7 +8,7 @@ import Select from "../sub-components/Select";
 import FileInput from "../sub-components/FileInput";
 import OptionInput from "../sub-components/OptionsInput";
 import DateTimeInput from "../sub-components/DateTimeInput";
-import TextArea from "../sub-components/TextArea";
+import TextBox from "../sub-components/TextBox";
 
 export default function Form() {
     const { standards } = useApi();
@@ -141,7 +141,7 @@ export default function Form() {
                 Selected={formData.samplingDate}
                 OnChange={(samplingDate) => setFormData({ ...formData, samplingDate })}
             />
-            <TextArea
+            <TextBox
                 Id={"note"}
                 value={formData.note}
                 onChange={handleChange}

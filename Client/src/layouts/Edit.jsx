@@ -6,7 +6,7 @@ import useUpdateHistory from "../hooks/useUpdateHistory";
 import Input from "../sub-components/Input";
 import OptionInput from "../sub-components/OptionsInput";
 import DateTimeInput from "../sub-components/DateTimeInput";
-import TextArea from "../sub-components/TextArea";
+import TextBox from "../sub-components/TextBox";
 
 export default function Edit() {
     const navigate = useNavigate();
@@ -116,7 +116,7 @@ export default function Edit() {
                     Selected={formData.samplingDate}
                     OnChange={(samplingDate) => setFormData({ ...formData, samplingDate })}
                 />
-                <TextArea
+                <TextBox
                     Id={"note"}
                     value={formData.note}
                     onChange={(e) => setFormData({ ...formData, note: e.target.value })}
