@@ -1,7 +1,23 @@
-# Setup
-## Open Terminal
-- git clone [this.repository]
-- cd to root directory where you see both Client and Server folder
+# Project Setup
 
-- docker-compose up --build
-then wait for it to build docker image and run container, after finished you can visit website at http://localhost:5173.
+Follow these steps to set up the project on your local machine.
+
+---
+
+### Step 1: Clone the Repository
+Open your terminal and clone the repository by running:
+```bash
+git clone [this.repository]
+
+### Step 2: Navigate to project root
+```bash
+cd path/to/project-root
+
+### Step 3: Build and Run the Project with Docker
+```bash
+docker-compose up --build
+
+---
+
+Wait for the build process to complete. Once it's finished, you can access the website locally at:
+- URL: http://localhost:5173
